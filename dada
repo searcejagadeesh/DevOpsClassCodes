@@ -1,37 +1,42 @@
 pipeline {
-    agent any
+    agent any     // if u r using master slave arch then u can // use particular label here eg. Prod, QA. 
     tools {
-        maven 'mymaven'
+        maven 'mymaven'	// The tool name must be pre-configured in Jenkins under Manage Jenkins → Global Tool Configuration.
     }
 
     stages {
         stage('clone') {
             steps {
-                git url: 'https://github.com/devopseng129/DevOpsClassCodes.git'
+                git url: 'https://github.com/Sachinm17/DevOpsClassCodes.git'
             }
         }
+        
         stage('compile') {
             steps {
                 sh 'mvn compile'
             }
         }
-        stage('code_review') {
+        
+        stage('code review') {
             steps {
-                sh 'mvn -P metrics pmd:pmd'
+                sh 'mvn -P matrics pmd:pmd'
             }
         }
-        stage('unit_test') {
+        
+        stage('unit test') {
             steps {
                 sh 'mvn test'
             }
         }
-        stage('metric_check') {
-            steps{
+        
+        stage('matric check') {
+            steps {
                 sh 'mvn cobertura:cobertura -D cobertura.report.format=xml'
             }
         }
+        
         stage('package') {
-            steps{
+            steps {
                 sh 'mvn package'
             }
         }
