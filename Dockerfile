@@ -1,4 +1,6 @@
-FROM java:8  
-COPY . /var/www/java  
-WORKDIR /var/www/java  
-CMD ["java", "-war", "./target/addressbook.war"]
+FROM openjdk:8-jdk-alpine
+
+COPY target/*.war /opt/
+#ENTRYPOINT ["java","-war","/app.jar"]
+
+ENTRYPOINT java $JAVA_OPTS -war /target/addressbook.war
