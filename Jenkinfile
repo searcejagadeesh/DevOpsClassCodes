@@ -4,12 +4,7 @@ pipeline {
         maven 'mymaven'	// The tool name must be pre-configured in Jenkins under Manage Jenkins → Global Tool Configuration.
     }
 
-    stages {
-        stage('clone') {
-            steps {
-                git url: 'https://github.com/searcejagadeesh/DevOpsClassCodes.git'
-            }
-        }
+   
         
         stage('compile') {
             steps {
