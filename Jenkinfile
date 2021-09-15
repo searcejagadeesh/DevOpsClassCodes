@@ -42,7 +42,7 @@ pipeline {
       stage('cloudfuntion deploy'){
           steps{
              script {
-                     withCredentials([file(credentialsId: 'demo1-326105', variable: 'GC_KEY')]) {
+                     withCredentials([file(credentialsId: 'cloudfuntiondeploy', variable: 'GC_KEY')]) {
                             sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
                             //sh("gcloud container clusters get-credentials prod --zone northamerica-northeast1-a --project ${project}")
                         }//credent
