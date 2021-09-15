@@ -44,7 +44,7 @@ pipeline {
              script {
                      withCredentials([file(credentialsId: 'cloudfuntiondeploy', variable: 'GC_KEY')]) {
                             sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
-                            //sh("gcloud container clusters get-credentials prod --zone northamerica-northeast1-a --project ${project}")
+                            sh("gcloud functions deploy my-first-function --entry-point functions.HelloWorld --runtime java11 --trigger-http --memory 512MB --allow-unauthenticated")
                         }//credent
 
                   }//script
